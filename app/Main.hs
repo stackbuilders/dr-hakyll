@@ -60,12 +60,19 @@ main =
 
     match "templates/*" (compile templateCompiler)
 
-    create ["feed.xml"] $ do
+    create ["atom.xml"] $ do
       route idRoute
       compile $ do
         posts <- fmap (take 10) . recentFirst
                    =<< loadAllSnapshots "posts/*" "content"
         renderAtom feedConfiguration feedContext posts
+
+    create ["rss.xml"] $ do
+      route idRoute
+      compile $ do
+        posts <- fmap (take 10) . recentFirst
+                   =<< loadAllSnapshots "posts/*" "content"
+        renderRss feedConfiguration feedContext posts
 
 feedContext :: Context String
 feedContext =
