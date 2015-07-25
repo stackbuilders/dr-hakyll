@@ -29,6 +29,47 @@ $ stack exec dr-hakyll build
 $ stack exec dr-hakyll rebuild
 ```
 
+## Version control
+
+### User or organization site
+
+```
+$ mkdir dr-hakyll.github.io/
+$ cd dr-hakyll.github.io/
+$ git init
+$ git commit --allow-empty -m "Create master branch"
+$ git remote add origin git@github.com:dr-hakyll/dr-hakyll.github.io.git
+$ git push origin master
+```
+
+```
+$ git checkout --orphan hakyll
+$ git submodule add git@github.com:dr-hakyll/dr-hakyll.github.io.git _site/
+$ git commit -m "Create hakyll branch"
+$ git push -u origin hakyll
+```
+
+### Project site
+
+```
+$ git clone git@github.com:dr-hakyll/yummy-giggles.git
+$ cd yummy-giggles/
+```
+
+```
+$ git checkout --orphan gh-pages
+$ git rm -rf .
+$ git commit --allow-empty -m "Create gh-pages branch"
+$ git push origin gh-pages
+```
+
+```
+$ git checkout --orphan hakyll
+$ git submodule add git@github.com:dr-hakyll/yummy-giggle.git _site/
+$ git commit -m "Add hakyll branch"
+$ git push -u origin hakyll
+```
+
 ## References
 
 ### Hakyll and Haskell
